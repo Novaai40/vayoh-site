@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Vayoh Clicker 🚀</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+  }
+  .game { width: 100%; max-width: 420px; padding: 20px; text-align: center; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: #fff; }
+  .score-box {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px; padding: 8px 16px;
+  }
+  .score-box h3 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .score-box .value { font-size: 28px; font-weight: 800; background: linear-gradient(90deg, #f7971e, #ffd200); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .title { font-size: 20px; font-weight: 800; color: #fff; }
+  .title span { color: #f7971e; }
+  .coin-area { position: relative; margin: 10px auto; width: 200px; height: 200px; cursor: pointer; touch-action: manipulation; }
+  .coin {
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffd700, #f7971e 50%, #b8650a 80%, #8b4513);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 60px; font-weight: 900; color: #fff;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 0 #8b4513, 0 15px 30px rgba(0,0,0,0.4), inset 0 -5px 15px rgba(0,0,0,0.3), inset 0 5px 15px rgba(255,255,255,0.3);
+    transition: transform 0.1s; position: relative; overflow: hidden;
+  }
+  .coin::before {
+    content: ''; position: absolute; width: 80px; height: 40px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.3), transparent);
+    top: 25px; left: 30px; border-radius: 50%; transform: rotate(-20deg);
+  }
+  .coin.press { transform: scale(0.92); }
+  .coin-text { position: relative; z-index: 2; }
+  .click-effect {
+    position: absolute; pointer-events: none; font-size: 24px; font-weight: 800;
+    color: #ffd700; animation: floatUp 0.8s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
+  }
+  .boost-bar {
+    margin: 15px 0; padding: 12px; background: rgba(255,255,255,0.08);
+    border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .boost-label { color: #aaa; font-size: 12px; margin-bottom: 6px; }
+  .boost-energy { height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+  .boost-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #f7971e, #ffd200); border-radius: 10px; transition: width 0.3s; }
+  .shop { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .shop-item {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 10px; color: #fff; cursor: pointer;
+    transition: all 0.2s; touch-action: manipulation;
+  }
+  .shop-item:active { transform: scale(0.95); background: rgba(255,255,255,0.12); }
+  .shop-item .name { font-size: 13px; font-weight: 600; }
+  .shop-item .desc { font-size: 10px; color: #888; margin: 2px 0; }
+  .shop-item .cost { font-size: 14px; font-weight: 700; color: #ffd700; }
+  .shop-item.locked { opacity: 0.4; }
+  .toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.9); color: #fff; padding: 10px 24px;
+    border-radius: 30px; font-size: 14px; z-index: 100;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+  .reset { margin-top: 20px; font-size: 12px; color: #555; background: none; border: 1px solid #333; border-radius: 8px; padding: 6px 16px; cursor: pointer; }
+  @media (max-width: 420px) {
+    .coin-area { width: 160px; height: 160px; }
+    .coin { width: 160px; height: 160px; font-size: 48px; }
+    .score-box .value { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="game">
+  <div class="header">
+    <div class="score-box"><h3>Score</h3><div class="value" id="score">0</div></div>
+    <div class="title">Vayoh<span>AI</span></div>
+    <div class="score-box"><h3>Per Click</h3><div class="value" id="perClick">+1</div></div>
+  </div>
+  <div class="coin-area" id="coinArea">
+    <div class="coin" id="coin"><span class="coin-text">🚀</span></div>
+  </div>
+  <div class="boost-bar">
+    <div class="boost-label">🔥 Boost Energy</div>
+    <div class="boost-energy"><div class="boost-fill" id="boostFill" style="width:100%"></div></div>
+  </div>
+  <div class="shop" id="shop">
+    <div class="shop-item" data-item="0">
+      <div class="name">🤖 AI Bot</div>
+      <div class="desc">Auto 1/sec</div>
+      <div class="cost">$50</div>
+    </div>
+    <div class="shop-item" data-item="1">
+      <div class="name">⚡ Turbo</div>
+      <div class="desc">2x per click</div>
+      <div class="cost">$200</div>
+    </div>
+    <div class="shop-item" data-item="2">
+      <div class="name">💎 Diamond</div>
+      <div class="desc">5x per click</div>
+      <div class="cost">$1K</div>
+    </div>
+    <div class="shop-item" data-item="3">
+      <div class="name">🪙 Infinite</div>
+      <div class="desc">10x per click</div>
+      <div class="cost">$5K</div>
+    </div>
+  </div>
+  <button class="reset" id="reset">↻ Reset</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  let state = JSON.parse(localStorage.getItem('vayoh_clicker')) || {s:0,c:1,b:100,n:[0,0,0,0]};
+  const ITEMS = [
+    {b:50,n:'AI Bot',m:0}, {b:200,n:'Turbo',m:1}, {b:1000,n:'Diamond',m:2}, {b:5000,n:'Infinite',m:3}
+  ];
+  function cost(i) { return Math.floor(ITEMS[i].b * Math.pow(1.5, state.n[i])); }
+  function save() { localStorage.setItem('vayoh_clicker',JSON.stringify(state)); }
+  function recalc() {
+    let p=1;
+    if(state.n[1]) p*=Math.pow(2,state.n[1]);
+    if(state.n[2]) p*=Math.pow(5,state.n[2]);
+    if(state.n[3]) p*=Math.pow(10,state.n[3]);
+    state.c=p;
+  }
+  function toast(m) { const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),1500); }
+  recalc();
+  
+  document.getElementById('coinArea').addEventListener('click', function(e) {
+    const r=this.getBoundingClientRect();
+    const cx=(e.clientX||0)-r.left, cy=(e.clientY||0)-r.top;
+    document.getElementById('coin').classList.add('press');
+    setTimeout(()=>document.getElementById('coin').classList.remove('press'),100);
+    const ef=document.createElement('div');
+    ef.className='click-effect';
+    const g=state.c;
+    ef.textContent='+$'+(g<1000?g:(g/1000).toFixed(1)+'K');
+    ef.style.left=(cx-20)+'px'; ef.style.top=(cy-20)+'px';
+    this.appendChild(ef);
+    setTimeout(()=>ef.remove(),800);
+    state.s+=state.c;
+    if(state.b>0) { state.b=Math.max(0,state.b-0.5); document.getElementById('boostFill').style.width=(state.b/100*100)+'%'; }
+    const fs=state.s;
+    document.getElementById('score').textContent=fs<100000?fs:Math.floor(fs/1000)+'K';
+    save();
+  });
+  document.getElementById('coinArea').addEventListener('touchstart', function(e) { e.preventDefault(); this.click(); }, {passive:false});
+
+  function upShop() {
+    document.querySelectorAll('.shop-item').forEach((el,i)=>{
+      const c=cost(i);
+      el.querySelector('.cost').textContent='$'+(c<1000?c:Math.floor(c/1000)+'K');
+      el.querySelector('.name').textContent=ITEMS[i].n+' ['+state.n[i]+']';
+      if(state.s<c) el.classList.add('locked'); else el.classList.remove('locked');
+    });
+  }
+  document.querySelectorAll('.shop-item').forEach((el,i)=>{
+    el.addEventListener('click',function(){
+      const c=cost(i);
+      if(state.s<c){toast('Need $'+c);return;}
+      state.s-=c;state.n[i]++;recalc();
+      const fs=state.s;
+      document.getElementById('score').textContent=fs<100000?fs:Math.floor(fs/1000)+'K';
+      document.getElementById('perClick').textContent='+'+state.c;
+      upShop();save();toast('Got '+ITEMS[i].n+'!');
+    });
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    if(confirm('Reset?')){state={s:0,c:1,b:100,n:[0,0,0,0]};recalc();save();upShop();document.getElementById('score').textContent='0';document.getElementById('perClick').textContent='+1';document.getElementById('boostFill').style.width='100%';toast('Reset!');}
+  });
+  
+  setInterval(()=>{
+    if(state.n[0]>0){state.s+=state.n[0];const fs=state.s;document.getElementById('score').textContent=fs<100000?fs:Math.floor(fs/1000)+'K';save();}
+    if(state.b<100){state.b=Math.min(100,state.b+3);document.getElementById('boostFill').style.width=(state.b/100*100)+'%';}
+  },1000);
+  
+  upShop();
+  {const fs=state.s;document.getElementById('score').textContent=fs<100000?fs:Math.floor(fs/1000)+'K';}
+  document.getElementById('perClick').textContent='+'+state.c;
+  document.getElementById('boostFill').style.width=(state.b/100*100)+'%';
+</script>
+</body>
+</html>
