@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liridona Reinigung · Professionelle Reinigung in 8052 Zürich</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#111;background:#fff;overflow-x:hidden;line-height:1.5}
+  :root{
+    --primary:#0b4f6c;
+    --primary-dark:#072f42;
+    --accent:#2ec4b6;
+    --accent-light:#e8faf8;
+    --gold:#c8a45c;
+    --gray-50:#f8f9fa;
+    --gray-100:#f0f1f3;
+    --gray-200:#e0e2e5;
+    --gray-500:#8a8f96;
+    --gray-700:#4a4e54;
+    --gray-900:#1a1c20;
+    --shadow:0 4px 24px rgba(0,0,0,.06);
+    --shadow-lg:0 20px 60px rgba(0,0,0,.08);
+    --radius:16px;
+    --radius-sm:8px;
+  }
+
+  /* ===== UTILITY ===== */
+  .container{max-width:1200px;margin:auto;padding:0 24px}
+  section{padding:100px 0}
+  .section-label{font-size:.75em;text-transform:uppercase;letter-spacing:3px;font-weight:600;color:var(--gold);margin-bottom:12px}
+  .section-title{font-size:clamp(1.8em,3.5vw,2.8em);font-weight:800;line-height:1.1;margin-bottom:16px;color:var(--gray-900)}
+  .section-sub{font-size:1.05em;color:var(--gray-500);max-width:600px;font-weight:300;line-height:1.7}
+
+  /* ===== NAVIGATION ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:all .3s}
+  .nav-inner{max-width:1200px;margin:auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:72px}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gray-900);font-weight:800;font-size:1.05em}
+  .nav-logo .icon{width:36px;height:36px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1em}
+  .nav-links{display:flex;gap:4px}
+  .nav-links a{padding:8px 16px;border-radius:100px;color:var(--gray-700);text-decoration:none;font-size:.85em;font-weight:500;transition:all .3s}
+  .nav-links a:hover{background:var(--gray-100);color:var(--primary)}
+  .nav-links a.active{background:var(--primary);color:#fff}
+  .nav-cta{background:var(--primary);color:#fff;padding:10px 24px;border-radius:100px;text-decoration:none;font-size:.85em;font-weight:600;transition:all .3s}
+  .nav-cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
+  .nav-mobile-btn{display:none;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;padding:8px}
+  .nav-mobile-btn span{width:24px;height:2px;background:var(--gray-900);border-radius:2px;transition:all .3s}
+
+  /* ===== DROPDOWN ===== */
+  .dropdown{position:relative}
+  .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;min-width:200px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .3s}
+  .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(4px)}
+  .dropdown-menu a{display:block;padding:10px 16px;border-radius:8px;color:var(--gray-700);text-decoration:none;font-size:.85em;transition:all .2s}
+  .dropdown-menu a:hover{background:var(--gray-50);color:var(--primary)}
+
+  /* ===== HERO ===== */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,var(--gray-50) 50%,var(--accent-light) 100%)}
+  .hero-bg-shape{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(46,196,182,.06),transparent 70%);border-radius:50%;pointer-events:none}
+  .hero-bg-shape-2{position:absolute;bottom:-10%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(11,79,108,.04),transparent 70%);border-radius:50%;pointer-events:none}
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:auto;padding:120px 24px 80px;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-light);border:1px solid rgba(46,196,182,.2);padding:8px 20px;border-radius:100px;font-size:.75em;color:var(--primary);font-weight:600;margin-bottom:24px}
+  .hero-badge .check{width:18px;height:18px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65em}
+  .hero h1{font-size:clamp(2.5em,5vw,4em);font-weight:900;line-height:1.05;color:var(--gray-900);margin-bottom:20px;letter-spacing:-1.5px}
+  .hero h1 .hl{color:var(--primary);position:relative}
+  .hero h1 .hl::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:4px;background:var(--accent);border-radius:2px;opacity:.4}
+  .hero p{font-size:1.1em;color:var(--gray-500);line-height:1.7;max-width:520px;margin-bottom:36px;font-weight:300}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:100px;font-weight:600;font-size:.9em;text-decoration:none;transition:all .3s;cursor:pointer}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(11,79,108,.2)}
+  .btn-outline{border:2px solid var(--gray-200);color:var(--gray-700)}
+  .btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:#25a89b;transform:translateY(-2px)}
+  .hero-image{background:var(--gray-100);border-radius:var(--radius);overflow:hidden;position:relative;min-height:400px;display:flex;align-items:center;justify-content:center}
+  .hero-image .placeholder{text-align:center;color:var(--gray-500)}
+  .hero-image .placeholder .big{font-size:5em;margin-bottom:8px}
+  .hero-image .placeholder p{font-size:.9em}
+  .hero-trust{display:flex;gap:24px;margin-top:40px;flex-wrap:wrap}
+  .hero-trust-item{display:flex;align-items:center;gap:8px;font-size:.85em;color:var(--gray-500)}
+  .hero-trust-item svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2}
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar{background:var(--primary-dark);color:#fff;padding:40px 0}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+  .trust-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .trust-item .icon{width:48px;height:48px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3em}
+  .trust-item .value{font-size:1.5em;font-weight:800;color:var(--accent)}
+  .trust-item .label{font-size:.8em;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+
+  /* ===== SERVICES ===== */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .service-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--radius);padding:36px 28px;transition:all .4s;cursor:default;position:relative;overflow:hidden}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity .4s}
+  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+  .service-card:hover::before{opacity:1}
+  .service-icon{width:56px;height:56px;background:var(--accent-light);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8em;margin-bottom:20px}
+  .service-card h3{font-size:1.1em;font-weight:700;margin-bottom:8px}
+  .service-card p{color:var(--gray-500);font-size:.88em;line-height:1.6;font-weight:300}
+  .service-card .price{display:inline-block;margin-top:16px;font-size:.8em;font-weight:600;color:var(--primary)}
+  .service-card .learn-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.85em;color:var(--accent);font-weight:600;text-decoration:none}
+  .service-card .learn-more:hover{text-decoration:underline}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+  .about-content p{color:var(--gray-500);font-size:.95em;line-height:1.7;margin-bottom:16px;font-weight:300}
+  .about-list{margin-top:24px}
+  .about-list-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+  .about-list-item .check{width:24px;height:24px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7em;flex-shrink:0;margin-top:2px}
+  .about-list-item p{color:var(--gray-500);font-size:.9em;font-weight:300;margin:0}
+  .about-list-item strong{color:var(--gray-900);font-weight:600}
+  .about-image{background:var(--gray-100);border-radius:var(--radius);min-height:400px;display:flex;align-items:center;justify-content:center;position:relative}
+  .about-image .placeholder{text-align:center;color:var(--gray-500)}
+  .about-image .placeholder .big{font-size:5em;margin-bottom:8px}
+  .about-image .badge-abs{position:absolute;bottom:24px;left:24px;background:#fff;padding:16px 20px;border-radius:12px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:12px}
+  .about-image .badge-abs .icon{font-size:2em}
+  .about-image .badge-abs .text strong{display:block;font-size:.9em;color:var(--gray-900)}
+  .about-image .badge-abs .text span{font-size:.8em;color:var(--gray-500)}
+
+  /* ===== PROCESS ===== */
+  .process{background:var(--gray-50)}
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;position:relative}
+  .process-grid::before{content:'';position:absolute;top:48px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--primary));opacity:.15}
+  .process-step{text-align:center;position:relative}
+  .process-step .num{width:56px;height:56px;margin:0 auto 16px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3em;font-weight:800;position:relative;z-index:2}
+  .process-step h4{font-size:.95em;font-weight:700;margin-bottom:8px}
+  .process-step p{font-size:.85em;color:var(--gray-500);line-height:1.5;font-weight:300}
+
+  /* ===== REVIEWS ===== */
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .review-card{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius);padding:32px 24px;transition:all .3s}
+  .review-card:hover{background:#fff;box-shadow:var(--shadow)}
+  .review-stars{color:var(--gold);font-size:1em;margin-bottom:12px}
+  .review-text{color:var(--gray-500);font-size:.88em;line-height:1.6;font-style:italic;margin-bottom:16px}
+  .review-author{font-size:.85em;font-weight:600;color:var(--gray-900)}
+  .review-author span{color:var(--gray-500);font-weight:400}
+
+  /* ===== SERVICE AREAS ===== */
+  .areas{background:var(--primary-dark);color:#fff}
+  .areas .section-title{color:#fff}
+  .areas .section-sub{color:rgba(255,255,255,.4)}
+  .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+  .area-chip{padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-align:center;font-size:.9em;font-weight:500;color:rgba(255,255,255,.7);transition:all .3s}
+  .area-chip:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.1);color:#fff}
+
+  /* ===== FAQ ===== */
+  .faq-list{max-width:800px;margin:48px auto 0}
+  .faq-item{border-bottom:1px solid var(--gray-100);padding:24px 0}
+  .faq-q{font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--gray-900);font-size:.95em}
+  .faq-q .toggle{font-size:1.3em;color:var(--accent);transition:transform .3s}
+  .faq-q.open .toggle{transform:rotate(45deg)}
+  .faq-a{padding-top:12px;color:var(--gray-500);font-size:.85em;line-height:1.6;display:none;font-weight:300}
+
+  /* ===== CONTACT ===== */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+  .contact-info{display:flex;flex-direction:column;gap:16px}
+  .contact-info-item{display:flex;gap:16px;align-items:flex-start;padding:20px;border:1px solid var(--gray-100);border-radius:12px;transition:all .3s}
+  .contact-info-item:hover{border-color:var(--accent);background:var(--accent-light)}
+  .contact-info-item .icon{flex-shrink:0;width:40px;height:40px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2em}
+  .contact-info-item .text strong{display:block;font-size:.9em;color:var(--gray-900)}
+  .contact-info-item .text span{font-size:.85em;color:var(--gray-500);font-weight:300}
+  .contact-info-item .text a{color:var(--primary);text-decoration:none;font-weight:600}
+  .contact-info-item .text a:hover{text-decoration:underline}
+  .contact-form{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius);padding:36px}
+  .contact-form h3{font-size:1.2em;font-weight:700;margin-bottom:20px}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-size:.85em;font-weight:600;margin-bottom:6px;color:var(--gray-700)}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1px solid var(--gray-200);border-radius:8px;font-family:'Inter',sans-serif;font-size:.9em;transition:all .2s;background:#fff}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,196,182,.1)}
+  .form-group textarea{min-height:100px;resize:vertical}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* ===== FOOTER ===== */
+  .footer{background:var(--gray-900);color:rgba(255,255,255,.3);padding:48px 0 32px;margin-top:0}
+  .footer-inner{max-width:1200px;margin:auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+  .footer h4{color:#fff;font-size:.9em;font-weight:700;margin-bottom:16px}
+  .footer p{font-size:.85em;line-height:1.6}
+  .footer-links{list-style:none}
+  .footer-links li{margin-bottom:8px}
+  .footer-links a{color:rgba(255,255,255,.3);text-decoration:none;font-size:.85em;transition:color .3s}
+  .footer-links a:hover{color:var(--accent)}
+  .footer-bottom{text-align:center;padding-top:32px;margin-top:32px;border-top:1px solid rgba(255,255,255,.06);font-size:.8em}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:1024px){
+    .hero-content{grid-template-columns:1fr;gap:40px}
+    .hero-image{min-height:300px}
+    .trust-grid{grid-template-columns:repeat(2,1fr)}
+    .services-grid{grid-template-columns:repeat(2,1fr)}
+    .process-grid{grid-template-columns:repeat(2,1fr)}
+    .process-grid::before{display:none}
+    .areas-grid{grid-template-columns:repeat(2,1fr)}
+    .contact-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .nav-mobile-btn{display:flex}
+    .hero{padding-top:72px}
+    .hero-content{padding:40px 20px}
+    .hero h1{font-size:2em;letter-spacing:-.5px}
+    section{padding:60px 0}
+    .services-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .reviews-grid{grid-template-columns:1fr}
+    .process-grid{grid-template-columns:1fr;gap:32px}
+    .contact-form{padding:24px}
+    .form-row{grid-template-columns:1fr}
+    .areas-grid{grid-template-columns:1fr 1fr}
+    .trust-grid{grid-template-columns:1fr;gap:24px}
+    .hero-actions{flex-direction:column}
+    .btn{justify-content:center}
+    .footer-inner{grid-template-columns:1fr}
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-up{opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.2,.9,.3,1)}
+  .fade-up.visible{opacity:1;transform:translateY(0)}
+  .fade-left{opacity:0;transform:translateX(-40px);transition:all .7s cubic-bezier(.2,.9,.3,1)}
+  .fade-left.visible{opacity:1;transform:translateX(0)}
+  .fade-right{opacity:0;transform:translateX(40px);transition:all .7s cubic-bezier(.2,.9,.3,1)}
+  .fade-right.visible{opacity:1;transform:translateX(0)}
+
+  /* ===== 3D TILT (CSS) ===== */
+  .tilt-card{transition:transform .3s;transform-style:preserve-3d;perspective:800px}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="icon">🧹</div>
+      <span>Liridona Reinigung</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="active">Start</a>
+      <a href="#services">Leistungen</a>
+      <a href="#about">Über uns</a>
+      <a href="#areas">Gebiete</a>
+      <a href="#reviews">Bewertungen</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Kontakt</a>
+    </div>
+    <a href="tel:044 350 38 56" class="nav-cta">📞 044 350 38 56</a>
+    <button class="nav-mobile-btn" onclick="alert('Mobile Nav — bald')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-shape-2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge fade-up"><span class="check">✓</span> 8052 Zürich · Über 10 Jahre Erfahrung</div>
+      <h1 class="fade-up" style="transition-delay:.1s">
+        Ihre Reinigung in <span class="hl">ORT</span> —<br>
+        makellos & zuverlässig
+      </h1>
+      <p class="fade-up" style="transition-delay:.2s">Liridona Reinigung bringt Ihren Haushalt oder Ihr Geschäft zum Glänzen. Fest angestellte Mitarbeiter, faire Preise und 100% Zufriedenheitsgarantie.</p>
+      <div class="hero-actions fade-up" style="transition-delay:.3s">
+        <a href="tel:044 350 38 56" class="btn btn-primary">📞 044 350 38 56 — Jetzt anrufen</a>
+        <a href="#contact" class="btn btn-outline">Kostenlose Offerte →</a>
+      </div>
+      <div class="hero-trust fade-up" style="transition-delay:.4s">
+        <div class="hero-trust-item"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Fest angestellt & versichert</div>
+        <div class="hero-trust-item"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 98% Weiterempfehlung</div>
+        <div class="hero-trust-item"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Gratis Besichtigung</div>
+      </div>
+    </div>
+    <div class="hero-image fade-right">
+      <div class="placeholder">
+        <div class="big">🧹</div>
+        <p>🧼 Ihr Team in 8052 Zürich</p>
+        <p style="font-size:.8em;margin-top:4px">🏆 500+ zufriedene Kunden</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item fade-up"><div class="icon">🎯</div><div class="value" data-count="10">0</div><div class="label">Jahre Erfahrung</div></div>
+      <div class="trust-item fade-up"><div class="icon">🏆</div><div class="value" data-count="680">0</div><div class="label">Zufriedene Kunden</div></div>
+      <div class="trust-item fade-up"><div class="icon">⭐</div><div class="value" data-count="99">0</div><div class="label">% Zufriedenheit</div></div>
+      <div class="trust-item fade-up"><div class="icon">📋</div><div class="value" data-count="15000">0</div><div class="label">Reinigungen durchgeführt</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-label fade-up">Unsere Leistungen</div>
+    <h2 class="section-title fade-up">Massgeschneiderte Reinigung<br>für jeden Bedarf</h2>
+    <p class="section-sub fade-up">Ob Privathaushalt oder Geschäft — wir haben die passende Lösung.</p>
+    <div class="services-grid">
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">🏠</div>
+        <h3>Privatreinigung</h3>
+        <p>Wohnungs- und Hausreinigung nach Ihren Wünschen. Flexible Intervalle — täglich, wöchentlich oder monatlich.</p>
+        <div class="price">Ab CHF 35 / Std.</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">🏢</div>
+        <h3>Büroreinigung</h3>
+        <p>Professionelle Reinigung für Geschäftsräume, Praxen und Büros. Diskret, effizient und ausserhalb der Geschäftszeiten.</p>
+        <div class="price">Individuelle Offerte</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">🧹</div>
+        <h3>Unterhaltsreinigung</h3>
+        <p>Regelmässige Grundreinigung für konstante Sauberkeit. Inklusive Fenster, Treppenhaus und Keller.</p>
+        <div class="price">Ab CHF 120 / Besuch</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">🔑</div>
+        <h3>Umzugsreinigung</h3>
+        <p>Komplette Reinigung nach Umzug oder Auszug. Damit Sie Ihre Kaution zu 100% zurückerhalten.</p>
+        <div class="price">Pauschal CHF 250</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">🌿</div>
+        <h3>Ökologische Reinigung</h3>
+        <p>Umweltfreundliche Produkte für Mensch, Tier und Planet — bei gleicher Reinigungsleistung.</p>
+        <div class="price">Auf Anfrage</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+      <div class="service-card fade-up tilt-card">
+        <div class="service-icon">✨</div>
+        <h3>Intensiv- & Grundreinigung</h3>
+        <p>Die Generalreinigung: Alles wird von Grund auf gereinigt — Fenster, Küche, Nasszellen, Schränke.</p>
+        <div class="price">Ab CHF 400</div>
+        <a href="#contact" class="learn-more">Anfragen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content fade-left">
+        <div class="section-label">Über uns</div>
+        <h2 class="section-title">Ihr Vertrauen ist<br>unser Anspruch</h2>
+        <p>Seit über 10 Jahren steht Liridona Reinigung für professionelle und vertrauenswürdige Reinigung in 8052 Zürich. Wir behandeln jede Immobilie, als wäre es unsere eigene — mit Liebe zum Detail und absolutem Qualitätsanspruch.</p>
+        <div class="about-list">
+          <div class="about-list-item"><div class="check">✓</div><p><strong>Fest angestellte Mitarbeiter</strong> — alle geschult, geprüft und haftpflichtversichert</p></div>
+          <div class="about-list-item"><div class="check">✓</div><p><strong>100% Zufriedenheitsgarantie</strong> — oder wir reinigen kostenlos nach</p></div>
+          <div class="about-list-item"><div class="check">✓</div><p><strong>Umweltfreundliche Produkte</strong> — schonend für Mensch, Tier und Umwelt</p></div>
+          <div class="about-list-item"><div class="check">✓</div><p><strong>Flexibel & zuverlässig</strong> — auch kurzfristige Termine sind möglich</p></div>
+        </div>
+      </div>
+      <div class="about-image fade-right">
+        <div class="placeholder">
+          <div class="big">👥</div>
+          <p>🧼 Ihr Team — lernens Sie uns kennen</p>
+        </div>
+        <div class="badge-abs">
+          <div class="icon">🏅</div>
+          <div class="text">
+            <strong>10+ Jahre</strong>
+            <span>Erfahrung in 8052 Zürich</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process">
+  <div class="container">
+    <div class="section-label fade-up">So einfach geht's</div>
+    <h2 class="section-title fade-up">In 4 Schritten zur<br>sauberen Wohnung</h2>
+    <div class="process-grid">
+      <div class="process-step fade-up"><div class="num">1</div><h4>Kontakt aufnehmen</h4><p>Rufen Sie uns an oder nutzen Sie das Kontaktformular</p></div>
+      <div class="process-step fade-up"><div class="num">2</div><h4>Kostenlose Besichtigung</h4><p>Wir kommen vorbei und besprechen Ihre Wünsche</p></div>
+      <div class="process-step fade-up"><div class="num">3</div><h4>Massgeschneidertes Angebot</h4><p>Sie erhalten ein faires Angebot ohne versteckte Kosten</p></div>
+      <div class="process-step fade-up"><div class="num">4</div><h4>Geniessen Sie Sauberkeit</h4><p>Wir reinigen — Sie entspannen. Regelmässig oder einmalig.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-label fade-up">Bewertungen</div>
+    <h2 class="section-title fade-up">Was unsere Kunden sagen</h2>
+    <p class="section-sub fade-up">Über 500 zufriedene Kunden in 8052 Zürich und Umgebung.</p>
+    <div class="reviews-grid">
+      <div class="review-card fade-up tilt-card"><div class="review-stars">★★★★★</div><div class="review-text">"Absolut zuverlässig und gründlich. Meine Wohnung glänzt jedes Mal. Kann ich nur empfehlen!"</div><div class="review-author">Sarah M. <span>· 8052 Zürich</span></div></div>
+      <div class="review-card fade-up tilt-card"><div class="review-stars">★★★★★</div><div class="review-text">"Seit 3 Jahren unser Reinigungsservice. Professionell, diskret, pünktlich — besser geht's nicht."</div><div class="review-author">Dr. Andreas K. <span>· Praxis in 8052 Zürich</span></div></div>
+      <div class="review-card fade-up tilt-card"><div class="review-stars">★★★★★</div><div class="review-text">"Umzugsreinigung war perfekt. Habe 100% meiner Kaution zurückbekommen — vielen Dank!"</div><div class="review-author">Lisa B. <span>· 8052 Zürich</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE AREAS ===== -->
+<section id="areas" class="areas">
+  <div class="container">
+    <div class="section-label fade-up" style="color:var(--accent)">Service Gebiete</div>
+    <h2 class="section-title fade-up">Wir sind für Sie da<br>in 8052 Zürich & Umgebung</h2>
+    <p class="section-sub fade-up">Ob Stadt oder Land — wir kommen zu Ihnen. Flexibel und pünktlich.</p>
+    <div class="areas-grid">
+      <div class="area-chip fade-up">📍 8052 Zürich Zentrum</div>
+      <div class="area-chip fade-up">📍 8052 Zürich Nord</div>
+      <div class="area-chip fade-up">📍 8052 Zürich Süd</div>
+      <div class="area-chip fade-up">📍 8052 Zürich West</div>
+      <div class="area-chip fade-up">📍 8052 Zürich Ost</div>
+      <div class="area-chip fade-up">📍 PLZ1</div>
+      <div class="area-chip fade-up">📍 PLZ2</div>
+      <div class="area-chip fade-up">📍 PLZ3</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label fade-up">FAQ</div>
+    <h2 class="section-title fade-up">Häufig gestellte Fragen</h2>
+    <div class="faq-list">
+      <div class="faq-item fade-up"><div class="faq-q">Wie läuft eine Erstreinigung ab? <span class="toggle">+</span></div><div class="faq-a">Wir vereinbaren einen Termin für eine kostenlose Besichtigung vor Ort. Dort besprechen wir Ihre Wünsche, prüfen den Aufwand und erstellen ein massgeschneidertes Angebot — unverbindlich und transparent.</div></div>
+      <div class="faq-item fade-up"><div class="faq-q">Sind Ihre Mitarbeiter versichert? <span class="toggle">+</span></div><div class="faq-a">Ja, alle Mitarbeiter sind fest bei Liridona Reinigung angestellt, geschult und haftpflichtversichert. Sie müssen sich um nichts kümmern.</div></div>
+      <div class="faq-item fade-up"><div class="faq-q">Welche Reinigungsmittel verwenden Sie? <span class="toggle">+</span></div><div class="faq-a">Wir setzen überwiegend umweltfreundliche, biologisch abbaubare Produkte ein. Auf Wunsch reinigen wir komplett ökologisch — ohne Kompromisse bei der Sauberkeit.</div></div>
+      <div class="faq-item fade-up"><div class="faq-q">Was passiert, wenn mir etwas nicht gefällt? <span class="toggle">+</span></div><div class="faq-a">Wir bieten 100% Zufriedenheitsgarantie. Sollte etwas nicht Ihren Erwartungen entsprechen, reinigen wir kostenlos nach. Keine Diskussion.</div></div>
+      <div class="faq-item fade-up"><div class="faq-q">Kann ich den Termin kurzfristig verschieben? <span class="toggle">+</span></div><div class="faq-a">Ja, bis 24 Stunden vorher ist eine kostenlose Verschiebung möglich. Bei kurzfristigeren Änderungen rufen Sie uns einfach an — wir finden eine Lösung.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-label fade-up">Kontakt</div>
+    <h2 class="section-title fade-up">Vereinbaren Sie einen Termin</h2>
+    <p class="section-sub fade-up">Kostenlose Besichtigung vor Ort — unverbindlich und fair.</p>
+    <div class="contact-grid">
+      <div class="contact-info fade-left">
+        <div class="contact-info-item"><div class="icon">📞</div><div class="text"><strong>Telefon</strong><span><a href="tel:044 350 38 56">044 350 38 56</a></span></div></div>
+        <div class="contact-info-item"><div class="icon">📍</div><div class="text"><strong>Adresse</strong><span>ORT · PLZ</span></div></div>
+        <div class="contact-info-item"><div class="icon">⏰</div><div class="text"><strong>Geschäftszeiten</strong><span>Mo–Fr: 07:00–18:00 · Sa: 08:00–14:00</span></div></div>
+        <div class="contact-info-item"><div class="icon">⚡</div><div class="text"><strong>Antwortzeit</strong><span>In der Regel innerhalb 1 Stunde</span></div></div>
+      </div>
+      <div class="contact-form fade-right">
+        <h3>Kontaktformular</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Name *</label><input type="text" placeholder="Ihr Name"></div>
+          <div class="form-group"><label>Telefon *</label><input type="tel" placeholder="Ihre Telefonnummer"></div>
+        </div>
+        <div class="form-group"><label>E-Mail</label><input type="email" placeholder="ihre@email.ch"></div>
+        <div class="form-group"><label>Leistung</label><select><option>Privatreinigung</option><option>Büroreinigung</option><option>Umzugsreinigung</option><option>Grundreinigung</option><option>Ökologische Reinigung</option><option>Anderes</option></select></div>
+        <div class="form-group"><label>Nachricht</label><textarea placeholder="Ihre Wünsche oder Fragen..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center">Anfrage senden →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-inner">
+    <div><h4>Liridona Reinigung</h4><p>Ihre professionelle Reinigung in 8052 Zürich und Umgebung. Seit über 10 Jahren Ihr Partner für Sauberkeit.</p></div>
+    <div><h4>Leistungen</h4><ul class="footer-links"><li><a href="#services">Privatreinigung</a></li><li><a href="#services">Büroreinigung</a></li><li><a href="#services">Umzugsreinigung</a></li><li><a href="#services">Grundreinigung</a></li></ul></div>
+    <div><h4>Kontakt</h4><ul class="footer-links"><li><a href="tel:044 350 38 56">044 350 38 56</a></li><li><a href="#contact">Kontaktformular</a></li></ul></div>
+    <div><h4>Rechtliches</h4><ul class="footer-links"><li><a href="#">Impressum</a></li><li><a href="#">Datenschutz</a></li><li><a href="#">AGB</a></li></ul></div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2026 Liridona Reinigung · 8052 Zürich · Website by Smart Cash Zürich</p>
+  </div>
+</div>
+
+<script>
+  // ===== SCROLL ANIMATIONS =====
+  const animEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
+  }, {threshold:.08, rootMargin:'0px 0px -60px 0px'});
+  animEls.forEach(el => obs.observe(el));
+
+  // ===== COUNTER ANIMATION =====
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        let current = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current + (target > 1000 ? '+' : '');
+        }, 25);
+        counterObs.unobserve(el);
+      }
+    });
+  }, {threshold:.5});
+  counters.forEach(el => counterObs.observe(el));
+
+  // ===== FAQ TOGGLE =====
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const a = q.nextElementSibling;
+      const isOpen = a.style.display === 'block';
+      document.querySelectorAll('.faq-a').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.faq-q').forEach(el => el.classList.remove('open'));
+      if (!isOpen) { a.style.display = 'block'; q.classList.add('open'); }
+    });
+  });
+
+  // ===== NAV ACTIVE LINK =====
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // ===== TILT EFFECT ON CARDS =====
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - .5;
+      const y = (e.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(800px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateZ(10px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    });
+  });
+</script>
+</body>
+</html>
