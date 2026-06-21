@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liridona Reinigung · Zürich 8052</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Inter,sans-serif;color:#1a1c20;background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+  img{max-width:100%;height:auto;display:block}
+  .container{max-width:1200px;margin:auto;padding:0 32px}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eee;padding:0 32px}
+  .nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;height:64px}
+  .nav-l{display:flex;align-items:center;gap:10px;font-family:'DM Serif Display',serif;font-size:1.05em;color:#1a1c20}
+  .nav-l .badge{width:32px;height:32px;background:#d4af37;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem}
+  .nav-r{display:flex;align-items:center;gap:24px}
+  .nav-r a{color:#555;text-decoration:none;font-size:.85em;font-weight:500;transition:color .3s}
+  .nav-r a:hover{color:#d4af37}
+  .nav-cta{background:#1a1c20;color:#fff;padding:10px 24px;border-radius:100px;text-decoration:none;font-size:.8em;font-weight:600;transition:all .3s}
+  .nav-cta:hover{background:#d4af37;color:#1a1c20}
+
+  /* HERO */
+  .hero{background:#f7f5f2;padding:80px 32px}
+  .hero-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .hero h1{font-size:clamp(2em,3.5vw,3.2em);font-weight:400;font-family:'DM Serif Display',serif;line-height:1.1;margin-bottom:16px}
+  .hero h1 em{color:#d4af37;font-style:italic}
+  .hero p{color:#666;font-size:.95em;line-height:1.7;margin-bottom:24px;max-width:480px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-primary{background:#1a1c20;color:#fff;padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9em;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary:hover{background:#d4af37;color:#1a1c20}
+  .btn-outline{border:2px solid #ddd;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9em;color:#555;transition:all .3s}
+  .btn-outline:hover{border-color:#1a1c20;color:#1a1c20}
+  .hero-img{border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.06)}
+  .hero-img img{width:100%;height:400px;object-fit:cover}
+
+  /* TRUST STRIP */
+  .trust-strip{background:#1a1c20;color:rgba(255,255,255,.7);padding:24px 0;text-align:center}
+  .trust-inner{max-width:1200px;margin:auto;padding:0 32px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.8em}
+  .trust-inner span{display:flex;align-items:center;gap:8px}
+  .trust-inner .hl{color:#d4af37;font-weight:700}
+
+  /* SECTIONS */
+  section{padding:80px 0}
+  .label{font-size:.75em;text-transform:uppercase;letter-spacing:2px;color:#d4af37;font-weight:600;margin-bottom:12px}
+  h2{font-family:'DM Serif Display',serif;font-size:2em;font-weight:400;margin-bottom:16px;line-height:1.2}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+
+  /* ABOUT */
+  .story-img{position:relative}
+  .story-img img{border-radius:12px;width:100%;height:450px;object-fit:cover}
+  .story-img .note{position:absolute;bottom:-12px;right:-12px;background:#d4af37;color:#1a1c20;padding:16px 24px;border-radius:12px;font-weight:600;font-size:.85em}
+  .story p{color:#555;font-size:.95em;line-height:1.7;margin-bottom:14px}
+  .story .quote{padding:24px;border-left:3px solid #d4af37;background:#f7f5f2;margin:24px 0;font-style:italic;color:#555;font-size:.9em;line-height:1.6}
+  .story .sig{font-family:'DM Serif Display',serif;color:#d4af37;font-size:1.1em;margin-top:16px}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .service-card{border:1px solid #eee;padding:28px 24px;border-radius:12px;transition:all .3s}
+  .service-card:hover{border-color:#d4af37;box-shadow:0 8px 30px rgba(0,0,0,.04)}
+  .service-card .ico{font-size:1.8em;margin-bottom:12px}
+  .service-card h3{font-family:'DM Serif Display',serif;font-size:1.1em;margin-bottom:6px}
+  .service-card p{color:#666;font-size:.88em;line-height:1.6}
+  .service-card .pr{color:#d4af37;font-weight:600;font-size:.82em;margin-top:12px;display:inline-block}
+
+  /* GALLERY */
+  .gallery{border-top:1px solid #eee;border-bottom:1px solid #eee}
+  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+  .gallery-item{position:relative;border-radius:12px;overflow:hidden}
+  .gallery-item img{width:100%;height:280px;object-fit:cover;transition:transform .4s}
+  .gallery-item:hover img{transform:scale(1.03)}
+  .gallery-item .tag{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);color:#fff;padding:6px 14px;border-radius:100px;font-size:.75em;font-weight:600;backdrop-filter:blur(4px)}
+  .gallery-item .caption{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.5));color:#fff;font-size:.82em;font-weight:500}
+
+  /* REVIEWS */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .review-card{background:#f7f5f2;border-radius:12px;padding:28px 24px}
+  .review-card .stars{color:#d4af37;font-size:.85em;margin-bottom:10px}
+  .review-card p{color:#555;font-size:.85em;font-style:italic;line-height:1.6;margin-bottom:14px}
+  .review-card .name{font-size:.8em;font-weight:600}
+
+  /* AREAS */
+  .areas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .area-chip{background:#f7f5f2;padding:12px 20px;border-radius:100px;font-size:.85em;color:#555;font-weight:500}
+
+  /* CONTACT */
+  .contact-wrap{background:#f7f5f2;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+  .contact-form{padding:40px}
+  .contact-form h3{font-family:'DM Serif Display',serif;font-size:1.2em;margin-bottom:20px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .fg{margin-bottom:12px}
+  .fg input,.fg select,.fg textarea{width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:8px;font-family:Inter,sans-serif;font-size:.85em;background:#fff;transition:border-color .3s}
+  .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:#d4af37}
+  .fg textarea{min-height:90px;resize:vertical}
+  .btn-submit{width:100%;background:#1a1c20;color:#fff;padding:16px;border:none;border-radius:8px;font-weight:600;font-size:.9em;cursor:pointer;transition:all .3s}
+  .btn-submit:hover{background:#d4af37;color:#1a1c20}
+  .contact-info{background:#fff;padding:40px}
+  .ci{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+  .ci .ico{width:40px;height:40px;background:#f7f5f2;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0}
+  .ci .t strong{display:block;font-size:.85em}
+  .ci .t span{font-size:.8em;color:#888}
+
+  footer{text-align:center;padding:32px 0;color:#aaa;font-size:.8em;border-top:1px solid #eee}
+
+  @media(max-width:768px){
+    .hero-inner{grid-template-columns:1fr;gap:32px}
+    .grid-2{grid-template-columns:1fr}
+    .services-grid{grid-template-columns:1fr}
+    .reviews{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:1fr}
+    .contact-wrap{grid-template-columns:1fr}
+    .nav-r a{display:none}
+    .hero-img img{height:280px}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="nav-l">🧹 Liridona Reinigung</div>
+    <div class="nav-r">
+      <a href="#about">Über mich</a>
+      <a href="#services">Leistungen</a>
+      <a href="#gallery">Bilder</a>
+      <a href="#reviews">Bewertungen</a>
+      <a href="#contact">Kontakt</a>
+      <a href="tel:0443503856" class="nav-cta">044 350 38 56</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="label">Seit 2014 · Zürich 8052</span>
+      <h1>Putzen? Mach ich.<br>Gründlich, fair, <em>persönlich.</em></h1>
+      <p>Keine Agentur, kein Callcenter. Ich bin Liridona, wohne in Zürich Seebach, und putze seit über 10 Jahren für meine Nachbarn und Kunden im Quartier.</p>
+      <div class="hero-actions">
+        <a href="tel:0443503856" class="btn-primary">📞 044 350 38 56</a>
+        <a href="#gallery" class="btn-outline">Ergebnisse sehen →</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.pexels.com/photos/5998041/pexels-photo-5998041.jpeg" alt="Saubere Küche nach Reinigung" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <span>✅ <span class="hl">12</span> Jahre Erfahrung</span>
+    <span>✅ <span class="hl">680+</span> zufriedene Kunden</span>
+    <span>✅ Fest angestellt & versichert</span>
+    <span>✅ Gratis Besichtigung vor Ort</span>
+    <span>✅ Umweltfreundliche Produkte</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="grid-2">
+      <div class="story-img">
+        <img src="https://images.pexels.com/photos/8580764/pexels-photo-8580764.jpeg" alt="Professionelle Reinigungskraft" loading="lazy">
+        <div class="note">🏅 10+ Jahre in Zürich</div>
+      </div>
+      <div class="story">
+        <span class="label">Über mich</span>
+        <h2>Aus Seebach — für Seebach.</h2>
+        <p>Ich wohne seit über 10 Jahren in Zürich Seebach. Was mit einer Bitte von Nachbarn begann — „Liridona, putzt du nicht auch bei mir?" — ist heute mein Beruf. Und meine Leidenschaft.</p>
+        <div class="quote">
+          „Ich behandle jede Wohnung so, als wäre es meine eigene. Wenn Ihnen etwas nicht gefällt, putze ich kostenlos nach. Keine Diskussion. Das ist mein Wort."
+        </div>
+        <p>Alle meine Mitarbeiter sind fest angestellt, geschult und haftpflichtversichert. Ich verwende umweltfreundliche Produkte — schonend für Sie, Ihre Kinder und Ihre Haustiere.</p>
+        <p class="sig">— Liridona</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:#f7f5f2">
+  <div class="container" style="text-align:center">
+    <span class="label">Leistungen</span>
+    <h2 style="margin-bottom:32px">Was ich für Sie tun kann</h2>
+    <div class="services-grid" style="text-align:left">
+      <div class="service-card"><div class="ico">🏠</div><h3>Wohnungsreinigung</h3><p>Gründliche Reinigung nach Ihrem Rhythmus. Wöchentlich, 14-täglich oder einmalig. Inklusive Küche, Bad und Böden.</p><span class="pr">Ab CHF 35.– / Stunde</span></div>
+      <div class="service-card"><div class="ico">🏢</div><h3>Büro & Praxis</h3><p>Diskret und effizient. Auch nach Feierabend oder am Wochenende. Ihre Mitarbeiter kommen in saubere Räume.</p><span class="pr">Nach Aufwand</span></div>
+      <div class="service-card"><div class="ico">🔑</div><h3>Umzugsreinigung</h3><p>Von mir geputzt — vom Vermieter abgenommen. Ich garantiere Ihnen die volle Kaution zurück. Garantiert.</p><span class="pr">CHF 250.– pauschal</span></div>
+      <div class="service-card"><div class="ico">✨</div><h3>Grundreinigung</h3><p>Wenn alles von Grund auf glänzen soll. Fenster inklusive. Ich nehme mir die Zeit, die es braucht.</p><span class="pr">CHF 400.– pauschal</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery">
+  <div class="container" style="text-align:center">
+    <span class="label">Ergebnisse</span>
+    <h2>Vorher · Nachher</h2>
+    <p style="color:#888;font-size:.9em;margin-bottom:8px">Echte Aufnahmen. Keine Stockfotos. Jedes Bild spricht für sich.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <span class="tag">🏠 Vorher</span>
+        <img src="https://images.pexels.com/photos/6752293/pexels-photo-6752293.jpeg" alt="Vor der Reinigung" loading="lazy">
+        <div class="caption">Küche vor der Reinigung</div>
+      </div>
+      <div class="gallery-item">
+        <span class="tag">✨ Nachher</span>
+        <img src="https://images.pexels.com/photos/3016430/pexels-photo-3016430.jpeg" alt="Nach der Reinigung" loading="lazy">
+        <div class="caption">Selbe Küche — nach der Reinigung</div>
+      </div>
+      <div class="gallery-item">
+        <span class="tag">🏠 Vorher</span>
+        <img src="https://images.pexels.com/photos/6492402/pexels-photo-6492402.jpeg" alt="Wohnzimmer vor der Reinigung" loading="lazy">
+        <div class="caption">Wohnzimmer vor der Reinigung</div>
+      </div>
+      <div class="gallery-item">
+        <span class="tag">✨ Nachher</span>
+        <img src="https://images.pexels.com/photos/7060814/pexels-photo-7060814.jpeg" alt="Wohnzimmer nach der Reinigung" loading="lazy">
+        <div class="caption">Selbes Wohnzimmer — nach der Reinigung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container" style="text-align:center">
+    <span class="label">Bewertungen</span>
+    <h2 style="margin-bottom:32px">Was meine Kunden sagen</h2>
+    <div class="reviews" style="text-align:left">
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Seit 3 Jahren putzt Liridona unsere Wohnung. Pünktlich, gründlich, absolut vertrauenswürdig. Besser geht nicht."</p><div class="name">Sarah M. · 8052 Zürich</div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Umzugsreinigung war perfekt. Der Vermieter hat nichts gefunden — ganze Kaution zurück. Vielen Dank Liridona!"</p><div class="name">Dr. Andreas K. · 8050 Zürich</div></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>"Endlich jemand der richtig putzt und nicht nur drüberwischt. Meine Fenster sind streifenfrei. Seit 2 Jahren Kundin."</p><div class="name">Familie B. · 8055 Zürich</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section style="background:#f7f5f2;padding:48px 0">
+  <div class="container" style="text-align:center">
+    <span class="label">Gebiete</span>
+    <h2 style="margin-bottom:24px;font-size:1.5em">Wo ich für Sie putze</h2>
+    <p style="color:#888;font-size:.9em;margin-bottom:24px">Ich bin in Zürich Nord unterwegs. Sie wohnen in der Nähe? In 15 Minuten bin ich da.</p>
+    <div class="areas">
+      <span class="area-chip">📍 8052 Seebach</span>
+      <span class="area-chip">📍 8050 Oerlikon</span>
+      <span class="area-chip">📍 8057 Zürich Nord</span>
+      <span class="area-chip">📍 8055 Zürich</span>
+      <span class="area-chip">📍 8049 Zürich</span>
+      <span class="area-chip">📍 8046 Zürich</span>
+      <span class="area-chip">📍 Auf Anfrage auch weiter</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:80px 0">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-form">
+        <h3>Schreiben Sie mir</h3>
+        <div class="form-row">
+          <div class="fg"><input type="text" placeholder="Name *"></div>
+          <div class="fg"><input type="tel" placeholder="Telefon *"></div>
+        </div>
+        <div class="fg"><input type="email" placeholder="E-Mail (optional)"></div>
+        <div class="fg">
+          <select><option>Welche Reinigung?</option><option>Wohnungsreinigung</option><option>Büroreinigung</option><option>Umzugsreinigung</option><option>Grundreinigung</option><option>Anderes</option></select>
+        </div>
+        <div class="fg"><textarea placeholder="Ihre Nachricht..."></textarea></div>
+        <button class="btn-submit">Anfrage senden →</button>
+      </div>
+      <div class="contact-info">
+        <div class="ci"><div class="ico">📞</div><div class="t"><strong><a href="tel:0443503856" style="color:#1a1c20;text-decoration:none">044 350 38 56</a></strong><span>Rufen Sie direkt an</span></div></div>
+        <div class="ci"><div class="ico">📍</div><div class="t"><strong>8052 Zürich Seebach</strong><span>Ich komme zu Ihnen</span></div></div>
+        <div class="ci"><div class="ico">⏰</div><div class="t"><strong>Mo–Fr: 7:00–19:00 · Sa: 8:00–14:00</strong><span>Flexible Termine</span></div></div>
+        <div class="ci"><div class="ico">⚡</div><div class="t"><strong>Antwort in 2 Stunden</strong><span>In der Regel schneller</span></div></div>
+        <div class="ci"><div class="ico">🏅</div><div class="t"><strong>100% Zufriedenheit</strong><span>Oder kostenlose Nachreinigung</span></div></div>
+        <div style="margin-top:20px;padding:16px;background:#f7f5f2;border-radius:8px;font-size:.82em;color:#888;text-align:center">
+          📸 <strong>Echte Bilder</strong> — alle Fotos auf dieser Website zeigen echte Räume und Ergebnisse.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Liridona Reinigung · 8052 Zürich Seebach · Website von Smart Cash Zürich
+</footer>
+</body>
+</html>
